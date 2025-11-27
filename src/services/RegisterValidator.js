@@ -3,8 +3,6 @@
 const nameEl = document.querySelector('#name');
 const phoneEl = document.querySelector('#phone');
 const emailEl = document.querySelector('#email');
-const ageEl = document.querySelector('#age');
-const dniEl = document.querySelector('#dni');
 const form = document.querySelector('#signup');
 
 //valida
@@ -92,4 +90,4 @@ const checkEmail = ()=>{
 
 
 
-export {checkName,checkPhone,checkEmail,checkAge,checkDni}
+export {checkName,checkPhone,checkEmail}

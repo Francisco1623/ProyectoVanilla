@@ -36,7 +36,7 @@ return `<h2>Jugador no encontrado</h2>`;
       </div>
 
       <div class="btn-field">
-        <a class="btn btn-secondary" href="/#/players">↩ Volver</a>
+        <a class="btn btn-secondary" href="/#/players">Volver</a>
       </div>
     </form>
     `;
