@@ -11,16 +11,12 @@ export async function Players() {
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Edad</th>
-      <th scope="col">Altura</th>
-        <th scope="col">Posición</th>
       <th scope="col">Nacionalidad</th>
 
     </tr>
   </thead>
   
     ${players}
-    
   
 </table>      
         `;

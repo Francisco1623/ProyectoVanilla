@@ -30,10 +30,8 @@ export const getPlayers = async() => {
         let row = `<tr>
         <td>${player.id}</td>
         <td>${player.name}</td>
-        <td>${player.age}</td>
-        <td>${player.height}</td>
-        <td>${player.position}</td>
         <td>${player.nationality}</td>
+        <td><a class='btn btn-secondary' href='/#/player/${player.id}'>Ver Jugador</a></td>
         </tr>
         `;
         playersRows+= row;
@@ -45,3 +43,4 @@ export const getPlayers = async() => {
 
     
 }
+

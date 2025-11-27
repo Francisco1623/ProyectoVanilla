@@ -27,6 +27,8 @@ export function Navbar() {
         </li>
       </ul>
     </div>
+    <div><a href="#/register" class='btn btn-outline-primary'>Registrarse</a>
+    </div>
   </div>
 </nav>
 
