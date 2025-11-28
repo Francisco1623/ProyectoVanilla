@@ -1,93 +1,130 @@
-
-
-const nameEl = document.querySelector('#name');
-const phoneEl = document.querySelector('#phone');
+export function initRegisterValidator() {
+// Selección de inputs correctos del formulario
+const nameEl = document.querySelector('#username');
 const emailEl = document.querySelector('#email');
+const passwordEl = document.querySelector('#password');
+const confirmPasswordEl = document.querySelector('#confirm-password');
 const form = document.querySelector('#signup');
+const formMessage = document.querySelector('#form-message');
 
-//valida
-const isRequired = value => value===''?false:true;
-const isBetween = (length,min,max) => length < min || length > max ? false:true;
+// Funciones auxiliares
+const isRequired = value => value === '' ? false : true;
+
+const isBetween = (length, min, max) =>
+  length < min || length > max ? false : true;
+
 const isEmailValid = (email) => {
-  const re = /^(([^<>()\].,;:\s@"]+(\.[()\[\\.,;:\s@"]+)*)|(".+"))@(([0−9]1,3\.[0−9]1,3\.[0−9]1,3\.[0−9]1,3)|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(email);
 };
 
-
-//ERROR QUE SE MUESTRA
-
-const showError = (input,message)=>{
-    const formField = input.parentElement;
-    formField.classList.remove('success');
-    formField.classList.add('error');
-    const error = formField.querySelector('small');
-    error.textContent = message;
-}
-
-const showSuccess = (input) => {
-  // Obtener el elemento form-field
+// Mostrar error
+const showError = (input, message) => {
   const formField = input.parentElement;
-  // Eliminar la clase de error
+  formField.classList.remove('success');
+  formField.classList.add('error');
+
+  const error = formField.querySelector('small');
+  error.textContent = message;
+};
+
+// Mostrar éxito
+const showSuccess = (input) => {
+  const formField = input.parentElement;
   formField.classList.remove('error');
   formField.classList.add('success');
-  // Ocultar el mensaje de error
   const error = formField.querySelector('small');
   error.textContent = '';
 };
 
+// Validación: Nombre
+const checkName = () => {
+  let valid = false;
+  const min = 3, max = 40;
+  const name = nameEl.value.trim();
 
-const checkName = ()=>{
-    let valid = false;
-    const min = 3,max = 40;
-    const name = nameEl.value.trim();
-    if(!isRequired(name)){
-        showError(nameEl,"El nombre no puede estar vacío");
-    }else if(!isBetween(name.length,min,max)){
-        showError(nameEl,"El nombre tiene que tener al menos 3 caracteres y como maximo 40");
+  if (!isRequired(name)) {
+    showError(nameEl, "El nombre no puede estar vacío");
+  } else if (!isBetween(name.length, min, max)) {
+    showError(nameEl, "Debe tener entre 3 y 40 caracteres");
+  } else {
+    showSuccess(nameEl);
+    valid = true;
+  }
+  return valid;
+};
 
-    }else{
-        showSuccess(nameEl);
-        valid = true;
-    }
-    return valid;
+// Validación: Email
+const checkEmail = () => {
+  let valid = false;
+  const email = emailEl.value.trim();
+
+  if (!isRequired(email)) {
+    showError(emailEl, "El email no puede estar vacío");
+  } else if (!isEmailValid(email)) {
+    showError(emailEl, "El email no es válido");
+  } else {
+    showSuccess(emailEl);
+    valid = true;
+  }
+  return valid;
+};
+
+// Validación: Contraseña
+const checkPassword = () => {
+  let valid = false;
+  const password = passwordEl.value.trim();
+
+  if (!isRequired(password)) {
+    showError(passwordEl, "La contraseña no puede estar vacía");
+  } else if (password.length < 6) {
+    showError(passwordEl, "Debe tener al menos 6 caracteres");
+  } else {
+    showSuccess(passwordEl);
+    valid = true;
+  }
+  return valid;
+};
+
+// Validación: Confirmación de contraseña
+const checkConfirmPassword = () => {
+  let valid = false;
+  const confirmPassword = confirmPasswordEl.value.trim();
+  const password = passwordEl.value.trim();
+
+  if (!isRequired(confirmPassword)) {
+    showError(confirmPasswordEl, "Debe confirmar la contraseña");
+  } else if (password !== confirmPassword) {
+    showError(confirmPasswordEl, "Las contraseñas no coinciden");
+  } else {
+    showSuccess(confirmPasswordEl);
+    valid = true;
+  }
+  return valid;
+};
+
+// Evento Submit
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const isNameValid = checkName();
+  const isEmailValid = checkEmail();
+  const isPassValid = checkPassword();
+  const isConfirmValid = checkConfirmPassword();
+
+  const isFormValid =
+    isNameValid &&
+    isEmailValid &&
+    isPassValid &&
+    isConfirmValid;
+
+  if (isFormValid) {
+    formMessage.textContent = "Registro exitoso";
+    form.reset();
+
+    // Quitar las clases success después del reset
+    document.querySelectorAll('.form-field').forEach(f => f.classList.remove('success'));
+  }
+});
 }
 
-const checkPhone = ()=>{
-    let valid = false;
-    const min = 9,max = 9;
-    const phone = phoneEl.value.trim();
-    if(!isRequired(phone)){
-        showError(phoneEl,"El teléfono no puede estar vacío");
-    }else if(!isBetween(phone.length,min,max)){
-        showError(phoneEl,"El teléfono tiene que tener 9 números");
-
-    }else{
-        showSuccess(phoneEl);
-        valid = true;
-    }
-    return valid;
-}
-
-const checkEmail = ()=>{
-    let valid = false;
-    const email = emailEl.value;
-    if(!isRequired(email)){
-        showError(emailEl,"El email no puede estar vacío");
-    }else if(!isEmailValid(email)){
-        showError(emailEl,"El email tiene que ser válido");
-
-    }else{
-        showSuccess(emailEl);
-        valid = true;
-    }
-    return valid;
-}
-
-
-
-
-
-
-
-
-export {checkName,checkPhone,checkEmail}

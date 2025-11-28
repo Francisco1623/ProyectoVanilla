@@ -1,25 +1,41 @@
+/* Reset básico */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* Contenedor principal */
 #app {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* ocupar toda la pantalla */
+  min-height: 100vh; /* ocupa toda la pantalla */
 }
 
+/* Navbar fijo arriba */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* Main: espacio entre navbar y footer, contenido normal */
 main {
-  flex-grow: 1; /* empuja el footer hacia abajo */
-  /* ---- CENTRAR TABLA ---- */
-  display: flex;
-  justify-content: center;   /* centra horizontal */
-  align-items: center;        /* centra vertical */
+  flex-grow: 1;         /* empuja el footer hacia abajo */
+  margin-top: 70px;     /* altura aproximada del navbar */
+  margin-bottom: 20px;  /* espacio antes del footer */
+  padding: 20px;        /* padding interno */
+  display: block;       /* contenido normal */
 }
 
+/* Footer */
 footer {
-  margin-top: auto;
+  margin-top: auto;     /* siempre al final */
+  background-color: #f8f9fa;
+  padding: 10px 20px;
+  text-align: center;
 }
 player-card {
   max-width: 400px;
@@ -179,6 +195,13 @@ player-card {
   margin-top: 4px;
 }
 
+.success-message {
+  color: rgb(65, 184, 61);
+  font-size: 0.85rem;
+  height: 15px;
+  margin-top: 4px;
+}
+
 .btn-submit {
   width: 100%;
   padding: 12px;
@@ -194,3 +217,41 @@ player-card {
 .btn-submit:hover {
   background: #3b78c6;
 }
+
+/* Botón normal */
+.btn-fav {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Botón activo */
+.btn-fav.active {
+  background-color: #ff4d4d; /* rojo */
+  color: white;
+  border-color: #ff0000;
+  transform: scale(1.1); /* pequeño efecto de “pop” */
+}
+
+.favorites-table {
+    width: 100%;
+    font-size: 1.2rem; /* aumenta el tamaño de texto */
+  }
+  .favorites-table th, .favorites-table td {
+    padding: 1rem; /* más espacio en cada celda */
+  }
+  .favorites-container {
+    max-width: 1200px; /* tabla más ancha */
+    margin: 0 auto; /* centrar */
+  }
+  .favorites-container h2 {
+    font-size: 2rem; /* título más grande */
+  }
+  .favorites-table .btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }

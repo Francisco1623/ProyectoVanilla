@@ -1,8 +1,10 @@
 export function Register() {
-return `
+  return `
 <div class="container">
     <form id="signup" class="form">
       <h1 class="form-title">Crear cuenta</h1>
+
+      <div id="form-message" class='success-message'></div>  
 
       <div class="form-field">
         <label for="username">Nombre de usuario</label>
