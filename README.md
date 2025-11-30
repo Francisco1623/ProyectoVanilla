@@ -50,3 +50,7 @@ npm run build
 
 - Despliegue en Netlify:
 Subir la carpeta dist generada.
+
+**Enlace a la Aplicación**
+https://692c3ce2bc4ba74ff0e75f28--candid-mochi-7c69a5.netlify.app/#/
+
