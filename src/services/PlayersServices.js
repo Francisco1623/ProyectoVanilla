@@ -1,5 +1,5 @@
 
-const url = 'http://localhost:3000/players';
+const url = 'https://692aa9fc7615a15ff24d4910.mockapi.io/api/players';
 
 export const getPlayers = async() => {
     const response = await fetch(url);

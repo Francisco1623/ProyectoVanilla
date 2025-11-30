@@ -218,7 +218,6 @@ player-card {
   background: #3b78c6;
 }
 
-/* Botón normal */
 .btn-fav {
   background-color: #f0f0f0;
   border: 1px solid #ccc;
@@ -226,17 +225,15 @@ player-card {
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease; /* transición suave */
 }
 
-/* Botón activo */
 .btn-fav.active {
-  background-color: #ff4d4d; /* rojo */
+  background-color: #ff4d4d;
   color: white;
   border-color: #ff0000;
-  transform: scale(1.1); /* pequeño efecto de “pop” */
+  transform: scale(1.1); /* efecto pop */
 }
-
 .favorites-table {
     width: 100%;
     font-size: 1.2rem; /* aumenta el tamaño de texto */
